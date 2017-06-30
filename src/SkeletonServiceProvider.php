@@ -14,6 +14,8 @@ class SkeletonServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->registerResources();
         }
+
+        $this->publishResources();
     }
 
     /**
@@ -29,17 +31,32 @@ class SkeletonServiceProvider extends ServiceProvider
      */
     protected function registerResources()
     {
+        // Views
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'skeleton');
+
+        // Translations
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'skeleton');
+
+        // Routes
+        $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
+    }
+
+    protected function publishResources()
+    {
         // Config
         $this->publishes([
             __DIR__.'/../config/skeleton.php' => config_path('skeleton.php'),
         ], 'config');
 
         // Views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'skeleton');
-
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/skeleton'),
         ], 'views');
+
+        // Translations
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/social-auth'),
+        ], 'lang');
 
         // Database
         if (! class_exists('CreateSocialProvidersTable')) {
@@ -49,15 +66,5 @@ class SkeletonServiceProvider extends ServiceProvider
                 __DIR__.'/../database/migrations/create_skeleton_table.php.stub' => $this->app->databasePath().'/migrations/'.$timestamp.'_create_skeleton_table.php',
             ], 'migrations');
         }
-
-        // Translations
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'skeleton');
-
-        $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/social-auth'),
-        ], 'lang');
-
-        // Routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
     }
 }
