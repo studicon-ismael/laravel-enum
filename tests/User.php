@@ -1,6 +1,6 @@
 <?php
 
-namespace ZFort\Skeleton\Test;
+namespace MadWeb\Skeleton\Test;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

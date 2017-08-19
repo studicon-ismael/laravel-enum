@@ -1,6 +1,6 @@
 <?php
 
-namespace ZFort\Skeleton;
+namespace MadWeb\Skeleton;
 
 class SkeletonClass
 {

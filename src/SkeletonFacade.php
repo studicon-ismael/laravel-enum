@@ -1,11 +1,11 @@
 <?php
 
-namespace ZFort\Skeleton;
+namespace MadWeb\Skeleton;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \ZFort\Skeleton\SkeletonClass
+ * @see \MadWeb\Skeleton\SkeletonClass
  */
 class SkeletonFacade extends Facade
 {
