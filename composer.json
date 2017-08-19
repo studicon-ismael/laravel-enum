@@ -1,38 +1,38 @@
 {
-    "name": "zfort/:package_name",
+    "name": "mad-web/:package_name",
     "description": ":package_description",
     "type": "library",
     "keywords": [
-        "zfort",
+        "mad-web",
         ":package_name"
     ],
-    "homepage": "https://github.com/zfort/:package_name",
+    "homepage": "https://github.com/mad-web/:package_name",
     "license": "MIT",
     "authors": [
         {
             "name": ":author_name",
-            "email": "developer@zfort.com",
-            "homepage": "https://zfort.com",
+            "email": "madweb.deb@gmail.com",
+            "homepage": "https://github.com/mad-web",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "^5.4"
+        "illuminate/support": "~5.4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0",
-        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "^5.7",
+        "orchestra/testbench": "~3.4.8",
         "mockery/mockery": "^0.9.9"
     },
     "autoload": {
         "psr-4": {
-            "ZFort\\Skeleton\\": "src"
+            "MadWeb\\Skeleton\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ZFort\\Skeleton\\Test\\": "tests"
+            "MadWeb\\Skeleton\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +44,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "ZFort\\Skeleton\\SkeletonServiceProvider"
+                "MadWeb\\Skeleton\\SkeletonServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "ZFort\\Skeleton\\SkeletonFacade"
+                "Skeleton": "MadWeb\\Skeleton\\SkeletonFacade"
             }
         }
     }
