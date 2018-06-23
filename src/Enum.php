@@ -11,6 +11,9 @@ abstract class Enum extends MyCLabsEnum
      */
     const __default = null;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct($value = null)
     {
         if (is_null($value)) {
@@ -32,6 +35,34 @@ abstract class Enum extends MyCLabsEnum
         $values = self::values();
 
         return $values[array_rand($values)];
+    }
+
+    public function label(): string
+    {
+        return self::getLabel($this->getValue());
+    }
+
+    public static function labels(): array
+    {
+        $result = [];
+
+        foreach (static::toArray() as $value) {
+            $result[$value] = static::getLabel($value);
+        }
+
+        return $result;
+    }
+
+    private static function getLabel(string $value): string
+    {
+        $lang_key = sprintf(
+            '%s.%s.%s',
+            config('enum.lang_file_path'),
+            static::class,
+            $value
+        );
+
+        return trans()->has($lang_key) ? __($lang_key) : $value;
     }
 
     public static function toArray(bool $include_default = false): array
