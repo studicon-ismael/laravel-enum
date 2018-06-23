@@ -8,8 +8,6 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:vendor``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
-
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
 PSRs you support to avoid any confusion with users and contributors.
 
@@ -27,23 +25,16 @@ vendor/
 
 ## Installation
 
-**Note:** Remove this paragraph if you are building a public package  
-This package is custom built for [Mad Web](https://github.com/mad-web) projects and is therefore not registered on packagist. In order to install it via composer you must specify this extra repository in `composer.json`:
-
-```json
-"repositories": [ { "type": "composer", "url": "https://satis.mad-web.com/" } ]
-```
-
 You can install the package via composer:
 
 ```bash
-composer require mad-web/:package_name
+composer require mad-web/laravel-enum
 ```
 
 ## Usage
 
 ``` php
-$skeleton = new MadWeb\Skeleton();
+$skeleton = new mad-web\laravel-enum();
 echo $skeleton->echoPhrase('Hello, Mad Web!');
 ```
 
@@ -67,26 +58,26 @@ If you discover any security related issues, please email madweb.dev@gmail.com i
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [mad-web](https://github.com/mad-web)
 - [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/mad-web/:package_name.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/mad-web/laravel-enum.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/mad-web/:package_name/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/mad-web/laravel-enum/master.svg?style=flat-square
 [ico-style]: https://styleci.io/repos/:repo_id/shield
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/mad-web/:package_name.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/mad-web/:package_name.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/mad-web/:package_name.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/mad-web/laravel-enum.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/mad-web/laravel-enum.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/mad-web/laravel-enum.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/mad-web/:package_name
-[link-travis]: https://travis-ci.org/mad-web/:package_name
+[link-packagist]: https://packagist.org/packages/mad-web/laravel-enum
+[link-travis]: https://travis-ci.org/mad-web/laravel-enum
 [link-style]: https://styleci.io/repos/:repo_id
-[link-scrutinizer]: https://scrutinizer-ci.com/g/mad-web/:package_name/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/mad-web/:package_name
-[link-downloads]: https://packagist.org/packages/mad-web/:package_name
-[link-author]: https://github.com/:author_username
+[link-scrutinizer]: https://scrutinizer-ci.com/g/mad-web/laravel-enum/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/mad-web/laravel-enum
+[link-downloads]: https://packagist.org/packages/mad-web/laravel-enum
+[link-author]: https://github.com/mad-web
 [link-contributors]: ../../contributors

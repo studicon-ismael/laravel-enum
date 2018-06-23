@@ -1,21 +1,21 @@
 <?php
 
-namespace MadWeb\Skeleton;
+namespace MadWeb\Enum;
 
 use Illuminate\Support\ServiceProvider;
 
-class SkeletonServiceProvider extends ServiceProvider
+class EnumServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->registerResources();
-        }
-
-        $this->publishResources();
+//        if ($this->app->runningInConsole()) {
+//            $this->registerResources();
+//        }
+//
+//        $this->publishResources();
     }
 
     /**
@@ -23,7 +23,7 @@ class SkeletonServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'skeleton');
+//        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'skeleton');
     }
 
     /**
@@ -63,7 +63,7 @@ class SkeletonServiceProvider extends ServiceProvider
             // Publish the migration
             $timestamp = date('Y_m_d_His', time());
             $this->publishes([
-                __DIR__.'/../database/migrations/create_skeleton_table.php.stub' => $this->app->databasePath().'/migrations/'.$timestamp.'_create_skeleton_table.php',
+                __DIR__ . '/../database/migrations/create_skeleton_table.php.stub' => $this->app->databasePath().'/migrations/'.$timestamp.'_create_skeleton_table.php',
             ], 'migrations');
         }
     }

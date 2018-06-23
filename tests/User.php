@@ -1,6 +1,6 @@
 <?php
 
-namespace MadWeb\Skeleton\Test;
+namespace MadWeb\Enum\Test;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

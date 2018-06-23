@@ -1,11 +1,11 @@
 <?php
 
-namespace MadWeb\Skeleton\Test;
+namespace MadWeb\Enum\Test;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use MadWeb\Skeleton\Test\Utils\TestExceptionHandler;
+
 
 class ExampleTest extends TestCase
 {
@@ -45,7 +45,7 @@ class ExampleTest extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [\MadWeb\Skeleton\SkeletonServiceProvider::class];
+        return [\MadWeb\Enum\EnumServiceProvider::class];
     }
 
     /**
@@ -54,9 +54,7 @@ class ExampleTest extends TestCase
      */
     protected function getPackageAliases($app)
     {
-        return [
-            'Skeleton' => \MadWeb\Skeleton\SkeletonFacade::class,
-        ];
+        return [];
     }
 
     /**
@@ -71,15 +69,7 @@ class ExampleTest extends TestCase
             $table->string('email');
             $table->string('avatar');
         });
-        include_once __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-
-        (new \CreateSkeletonTable())->up();
 
         User::create(['email' => $this->userEmail]);
-    }
-
-    protected function disableExceptionHandling()
-    {
-        $this->app->instance(ExceptionHandler::class, new TestExceptionHandler);
     }
 }

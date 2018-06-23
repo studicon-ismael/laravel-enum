@@ -1,16 +1,17 @@
 {
-    "name": "mad-web/:package_name",
-    "description": ":package_description",
+    "name": "mad-web/laravel-enum",
+    "description": "Elegant Enum Implementation",
     "type": "library",
     "keywords": [
         "mad-web",
-        ":package_name"
+        "enum",
+        "laravel-enum"
     ],
-    "homepage": "https://github.com/mad-web/:package_name",
+    "homepage": "https://github.com/mad-web/laravel-enum",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
+            "name": "mad-web",
             "email": "madweb.deb@gmail.com",
             "homepage": "https://github.com/mad-web",
             "role": "Developer"
@@ -18,7 +19,8 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "~5.4.0|~5.5.0|~5.6.0"
+        "illuminate/support": "~5.4.0|~5.5.0|~5.6.0",
+        "myclabs/php-enum": "^1.6"
     },
     "require-dev": {
         "mockery/mockery": "^1.0.0",
@@ -27,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MadWeb\\Skeleton\\": "src"
+            "MadWeb\\Enum\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MadWeb\\Skeleton\\Test\\": "tests"
+            "MadWeb\\Enum\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -44,11 +46,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MadWeb\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "MadWeb\\Skeleton\\SkeletonFacade"
-            }
+                "MadWeb\\Enum\\EnumServiceProvider"
+            ]
         }
     }
 }
