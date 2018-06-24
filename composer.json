@@ -1,6 +1,6 @@
 {
     "name": "mad-web/laravel-enum",
-    "description": "Elegant Enum Implementation",
+    "description": "Elegant Enum implementation for Laravel. With make:enum command, ability to casting for Eloquent models and labels translations via lang files.",
     "type": "library",
     "keywords": [
         "mad-web",

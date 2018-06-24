@@ -58,7 +58,7 @@ If you discover any security related issues, please email madweb.dev@gmail.com i
 
 ## Credits
 
-- [mad-web](https://github.com/mad-web)
+- [Mad Web](https://github.com/mad-web)
 - [All Contributors](../../contributors)
 
 ## License
