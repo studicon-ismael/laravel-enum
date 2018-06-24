@@ -2,24 +2,16 @@
 
 namespace MadWeb\Enum\Test;
 
-use Orchestra\Testbench\TestCase;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Contracts\Debug\ExceptionHandler;
 
-
-class ExampleTest extends TestCase
+class TestCase extends OrchestraTestCase
 {
     protected function setUp()
     {
         parent::setUp();
 
         $this->setUpDatabase($this->app);
-    }
-
-    /** @test */
-    public function true_is_true()
-    {
-        $this->assertTrue(true);
     }
 
     /**
@@ -64,12 +56,10 @@ class ExampleTest extends TestCase
      */
     protected function setUpDatabase($app)
     {
-        $app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
+        $app['db']->connection()->getSchemaBuilder()->create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email');
-            $table->string('avatar');
+            $table->string('title');
+            $table->string('status');
         });
-
-        User::create(['email' => $this->userEmail]);
     }
 }
