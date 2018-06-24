@@ -8,7 +8,7 @@ trait EnumCastable
     {
         $castedValue = parent::castAttribute($key, $value);
 
-        if ($castedValue === $value) {
+        if ($castedValue === $value and ! is_object($value)) {
             $cast_type = $this->getCasts()[$key];
 
             if (class_exists($cast_type) and is_subclass_of($cast_type, Enum::class)) {
