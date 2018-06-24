@@ -2,6 +2,7 @@
 
 namespace MadWeb\Enum;
 
+use MadWeb\Enum\Rules\EnumRule;
 use MyCLabs\Enum\Enum as MyCLabsEnum;
 
 abstract class Enum extends MyCLabsEnum
@@ -76,8 +77,19 @@ abstract class Enum extends MyCLabsEnum
         return $result;
     }
 
+    /**
+     * Returns all consts (possible values) as an array according to `SplEnum` class
+     */
     public function getConstList(bool $include_default = false): array
     {
         return static::toArray($include_default);
+    }
+
+    /**
+     * Returns validation rule
+    */
+    public static function rule(): EnumRule
+    {
+        return new EnumRule(static::class);
     }
 }
