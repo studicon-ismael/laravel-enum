@@ -34,7 +34,7 @@ class EnumMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/stubs/enum.stub';
+        return __DIR__.'/stubs/enum.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class EnumMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Enums';
+        return $rootNamespace.'\Enums';
     }
 }

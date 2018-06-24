@@ -2,7 +2,6 @@
 
 namespace MadWeb\Enum\Test;
 
-
 use MadWeb\Enum\Enum;
 
 class EnumCastingTest extends TestCase

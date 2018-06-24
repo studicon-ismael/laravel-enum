@@ -2,8 +2,8 @@
 
 namespace MadWeb\Enum\Test;
 
-use Illuminate\Database\Eloquent\Model;
 use MadWeb\Enum\EnumCastable;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
@@ -14,6 +14,6 @@ class Post extends Model
     protected $fillable = ['title', 'status'];
 
     protected $casts = [
-        'status' => PostStatusEnum::class
+        'status' => PostStatusEnum::class,
     ];
 }

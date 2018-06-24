@@ -12,4 +12,3 @@ final class PostStatusEnum extends Enum
     const PENDING = 'pending';
     const DRAFT = 'draft';
 }
-

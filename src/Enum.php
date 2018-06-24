@@ -83,7 +83,7 @@ abstract class Enum extends MyCLabsEnum
     }
 
     /**
-     * Returns all consts (possible values) as an array according to `SplEnum` class
+     * Returns all consts (possible values) as an array according to `SplEnum` class.
      */
     public function getConstList(bool $include_default = false): array
     {
@@ -91,8 +91,8 @@ abstract class Enum extends MyCLabsEnum
     }
 
     /**
-     * Returns validation rule
-    */
+     * Returns validation rule.
+     */
     public static function rule(): EnumRule
     {
         return new EnumRule(static::class);

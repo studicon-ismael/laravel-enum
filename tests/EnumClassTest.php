@@ -2,9 +2,6 @@
 
 namespace MadWeb\Enum\Test;
 
-
-use MadWeb\Enum\Enum;
-
 class EnumClassTest extends TestCase
 {
     /** @test */

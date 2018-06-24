@@ -6,5 +6,5 @@ return [
     PostStatusEnum::class => [
         PostStatusEnum::PENDING => 'Pending Label',
         PostStatusEnum::PUBLISHED => 'Published Label',
-    ]
+    ],
 ];
