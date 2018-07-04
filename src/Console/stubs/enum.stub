@@ -4,6 +4,11 @@ namespace DummyNamespace;
 
 use MadWeb\Enum\Enum;
 
+/**
+ * @method static DummyClass FOO()
+ * @method static DummyClass BAR()
+ * @method static DummyClass BAZ()
+ */
 final class DummyClass extends Enum
 {
     const FOO = 0;
