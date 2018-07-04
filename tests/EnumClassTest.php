@@ -21,6 +21,14 @@ class EnumClassTest extends TestCase
     }
 
     /** @test */
+    public function is_by_object()
+    {
+        $Enum = PostStatusEnum::PENDING();
+
+        $this->assertTrue($Enum->is(new PostStatusEnum));
+    }
+
+    /** @test */
     public function values()
     {
         $this->assertEquals(

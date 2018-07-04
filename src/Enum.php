@@ -66,9 +66,9 @@ abstract class Enum extends MyCLabsEnum
         return trans()->has($lang_key) ? __($lang_key) : $value;
     }
 
-    public function is(string $value)
+    public function is($value)
     {
-        return $this->getValue() === $value;
+        return $this->getValue() === ($value instanceof self ? $value->getValue() : $value);
     }
 
     public static function toArray(bool $include_default = false): array
