@@ -8,19 +8,39 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Elegant Enum implementation for Laravel.
 
-## Structure
+Based on [MyCLabs PHP Enum](https://github.com/myclabs/php-enum) and implements [SplEnum](http://php.net/manual/ru/class.splenum.php) interface.
 
-If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.
+You could find documentation for base features in [PHP Enum Readme](https://github.com/myclabs/php-enum/blob/master/README.md).
 
-```
-bin/        
-config/
-src/
-tests/
-vendor/
+Features:
+
+- `make:enum` command
+- ability to cast enum fields for Eloquent models
+- labels translation via lang files
+- simple validation rule
+
+## Simple Enum Example
+
+```php
+namespace App\Enums;
+
+use MadWeb\Enum\Enum;
+
+/**
+ * @method static PostStatusEnum FOO()
+ * @method static PostStatusEnum BAR()
+ * @method static PostStatusEnum BAZ()
+ */
+final class PostStatusEnum extends Enum
+{
+    const __default = self::PENDING;
+
+    const PUBLISHED = 'published';
+    const PENDING = 'pending';
+    const DRAFT = 'draft';
+}
 ```
 
 ## Installation
@@ -31,12 +51,198 @@ You can install the package via composer:
 composer require mad-web/laravel-enum
 ```
 
+If you use Laravel 5.4 version, add service provider into `app.php` config file
+
+```php
+// config/app.php
+
+'providers' => [
+    ...
+    \MadWeb\Enum\EnumServiceProvider::class,
+],
+```
+
 ## Usage
 
-``` php
-$skeleton = new mad-web\laravel-enum();
-echo $skeleton->echoPhrase('Hello, Mad Web!');
+Make new Enum class via artisan command
+
+```bash
+php artisan make:enum PostStatusEnum
 ```
+
+Create instance of Enum class
+
+``` php
+$status = new PostStatusEnum(PostStatusEnum::PENDING);
+
+// or just use magic static method
+$status = PostStatusEnum::PENDING();
+```
+
+In order to use enum values with Eloquent models you could use `EnumCastable` trait.
+
+```php
+class Post extends Model
+{
+    use EnumCastable;
+
+    protected $fillable = ['title', 'status'];
+
+    protected $casts = [
+        'status' => PostStatusEnum::class,
+    ];
+}
+```
+
+after that you could get and set enum field using enum classes
+
+```php
+$post = Post::first();
+
+$status = $post->status; // PostStatusEnum
+
+$post->status = PostStatusEnum::PENDING();
+
+$post->save();
+```
+
+### Enum values labels (Localization)
+
+Create `enums.php` lang file and declare labels for enum values
+
+```php
+// resources/lang/en/enums.php
+
+return [
+    PostStatusEnum::class => [
+        PostStatusEnum::PENDING => 'Pending Label',
+        PostStatusEnum::PUBLISHED => 'Published Label',
+        PostStatusEnum::DRAFT => 'Draft Label',
+    ],
+];
+```
+
+and get a label
+
+```php
+PostStatusEnum::PENDING()->label(); // Pending Label
+```
+
+---
+
+To override default enum lang file path, publish `laravel-enum` config
+
+```bash
+php artisan vendor:publish --provider=MadWeb\\Enum\\EnumServiceProvider
+```
+
+and change `lang_file_path` option
+
+```php
+// config/enum.php
+
+return [
+    'lang_file_path' => 'custom.path.to.enums',
+];
+```
+
+### Validation Rule
+
+You may validate an enum value from a request by using the `EnumRule` class or `Enum::rule()` method.
+
+``` php
+public function store(Request $request)
+{
+    $this->validate($request, [
+        'status' => ['required', new EnumRule(PostStatusEnum::class)],
+    ]);
+
+    // OR
+
+    $this->validate($request, [
+        'status' => ['required', PostStatusEnum::rule()],
+    ]);
+}
+```
+
+---
+
+To customize validation message, add `enum` key to validation lang file
+
+```php
+// resources/lang/en/validation.php
+    ...
+    'email' => 'The :attribute must be a valid email address.',
+    'enum' => 'Custom validation message form enum attribute :attribute', // Custom message
+    'exists' => 'The selected :attribute is invalid.',
+    ...
+```
+
+## Additional methods
+
+### getRandomKey(): string
+
+Returns a random key from the enum.
+
+```php
+PostStatusEnum::getRandomKey(); // Returns 'PUBLISHED` or `PENDING` or `DRAFT`
+```
+
+### getRandomValue()
+
+Returns a random value from the enum.
+
+```php
+PostStatusEnum::getRandomValue(); // Returns 'published` or `pending` or `draft`
+```
+
+### label(): string
+
+Returns label for the enum value object
+
+```php
+PostStatusEnum::PUBLISHED()->label(); // Returns 'published` or custom label declared in a lang file
+```
+
+### labels(): array
+
+Returns all labels for a enum
+
+```php
+PostStatusEnum::labels(); // Returns ['published`, 'pending', 'draft'] or array of custom labels declared in a lang file
+```
+
+### is($value): bool
+
+Checks whether the current enum value is equal to a given enum
+
+```php
+
+$status = PostStatusEnum::PENDING();
+
+
+PostStatusEnum::PUBLISHED()->is($status); // false
+
+PostStatusEnum::PENDING()->is($status); // true
+
+// OR
+
+PostStatusEnum::PUBLISHED()->is($status->getValue()); // false
+
+PostStatusEnum::PENDING()->is($status->getValue()); // true
+```
+
+### rule(): EnumRule
+
+Returns instance of validation rule class for the Enum
+
+```php
+PostStatusEnum::rule(); // new EnumRule(PostStatusEnum::class);
+```
+
+### getConstList(bool $include_default = false): array
+
+Returns all consts (possible values) as an array according to [SplEnum::getConstList](http://php.net/manual/en/splenum.getconstlist.php)
 
 ## Changelog
 
@@ -45,7 +251,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Testing
 
 ``` bash
-$ composer test
+composer test
 ```
 
 ## Contributing
